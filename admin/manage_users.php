@@ -13,12 +13,32 @@ $users = mysqli_query($connection, $query);
     <section class="dashboard">
 
         <!----PASS THE SUCCESS MESSAGE-FROM add-user-logic.php--->
-        <?php if (isset($_SESSION['add-user-success'])) : ?>
+        <?php if (isset($_SESSION['add-user-success'])) : //shows if add user was successful ?>
                 <div class="alert_message success container">
                     <p>
                    <?= $_SESSION['add-user-success'];
                     //DELETE AFER EXECUTING
                     unset($_SESSION['add-user-success']);
+                        ?>
+                    </p>
+                </div>
+                   <!--//EDIT USER SUCCESS MESSAGE-->
+                <?php elseif (isset($_SESSION['edit-user-success'])) : //shows if edit user was successful ?>
+                <div class="alert_message success container">
+                    <p>
+                   <?= $_SESSION['edit-user-success'];
+                    //DELETE AFER EXECUTING
+                    unset($_SESSION['edit-user-success']);
+                        ?>
+                    </p>
+                </div>
+             <!--//EDIT USER ERROR MESSAGE-->
+                <?php elseif (isset($_SESSION['edit-user'])) : //shows if edit user was NOT successful ?>
+                <div class="alert_message error container">
+                    <p>
+                   <?= $_SESSION['edit-user'];
+                    //DELETE AFER EXECUTING
+                    unset($_SESSION['edit-user']);
                         ?>
                     </p>
                 </div>
