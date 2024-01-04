@@ -1,6 +1,5 @@
 <?php
  // Session already started in constants.php
- session_start();
 require 'config/constants.php';
 
 $username_email = $_SESSION['signin-data']['username_email'] ?? null;
