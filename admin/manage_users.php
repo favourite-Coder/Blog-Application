@@ -1,15 +1,35 @@
 <?php
 include 'partials/header.php';
 
+//fETCH USER FROM DATABASE BUT NOT CURRENT USER
+
+$current_admin_id = $_SESSION['user-id'];
+
+$query = "SELECT * FROM users WHERE NOT id=$current_admin_id";
+$users = mysqli_query($connection, $query);
+
 ?>
     <!----------Manage Users------->
     <section class="dashboard">
-        <div class="container dashboard_container">
 
+        <!----PASS THE SUCCESS MESSAGE-FROM add-user-logic.php--->
+        <?php if (isset($_SESSION['add-user-success'])) : ?>
+                <div class="alert_message success container">
+                    <p>
+                   <?= $_SESSION['add-user-success'];
+                    //DELETE AFER EXECUTING
+                    unset($_SESSION['add-user-success']);
+                        ?>
+                    </p>
+                </div>
+            <?php endif ?>
+
+        <div class="container dashboard_container">
             <button id="show_sidebar-btn" class="sidebar_toogle">
                 <i class="uil uil-angle-right-b"></i></button>
             <button id="hide_sidebar-btn" class="sidebar_toogle">
                 <i class="uil uil-angle-left-b"></i></button>
+
             <aside>
                 <ul>
                     <li><a href="add_post.php"><i class="uil uil-pen"></i>
@@ -55,45 +75,18 @@ include 'partials/header.php';
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Sena Gabriel</td>
-                            <td>Sena</td>
-                            <td><a href="edit_category.php" class="btn sm">Edit</a></td>
-                            <td><a href="delete_category.php" class="btn sm danger">Delete</a></td>
-                            <td>Yes</td>
-                        </tr>
+                        <!--LOOP THROUGH AND DISPLAY USERS-->
+                        <?php while($user = mysqli_fetch_assoc($users)): ?>
 
                         <tr>
-                            <td>Willam Gift</td>
-                            <td>Gify</td>
-                            <td><a href="edit_category.php" class="btn sm">Edit</a></td>
-                            <td><a href="delete_category.php" class="btn sm danger">Delete</a></td>
-                            <td>Yes</td>
+                            <td><?= "{$user['firstname']} {$user['lastname']}" ?></td> <!--GET USER NAMES-->
+                            <td><?= $user['username'] ?></td> <!--GET USERNAME-->
+                            <td><a href="<?= ROOT_URL ?>admin/edit_user.php?id=<?= $user['id'] ?>" class="btn sm">Edit</a></td> <!--GET ID/EDIT USER-->
+                            <td><a href="<?= ROOT_URL ?>admin/delete_user.php?id=<?= $user['id'] ?>" class="btn sm danger">Delete</a></td> <!--DELETE USER-->
+                            <td><?= $user['is_admin'] ? 'Yes' : 'No' ?></td> <!--AUTHOR & ADMIN-->
                         </tr>
+                        <?php endwhile ?>
 
-                        <tr>
-                            <td>Kenny Black</td>
-                            <td>DeBlack</td>
-                            <td><a href="edit_category.php" class="btn sm">Edit</a></td>
-                            <td><a href="delete_category.php" class="btn sm danger">Delete</a></td>
-                            <td>No</td>
-                        </tr>
-
-                        <tr>
-                            <td>George Bush</td>
-                            <td>Bush</td>
-                            <td><a href="edit_category.php" class="btn sm">Edit</a></td>
-                            <td><a href="delete_category.php" class="btn sm danger">Delete</a></td>
-                            <td>Yes</td>
-                        </tr>
-
-                        <tr>
-                            <td>Ernest White</td>
-                            <td>White</td>
-                            <td><a href="edit_category.php" class="btn sm">Edit</a></td>
-                            <td><a href="delete_category.php" class="btn sm danger">Delete</a></td>
-                            <td>No</td>
-                        </tr>
                     </tbody>
                 </table>
             </main>
