@@ -1,7 +1,8 @@
 <?php
 
-define('ROOT_URL', 'http://localhost/blog/');
+session_start(); //Because session is used
 
+define('ROOT_URL', 'http://localhost/blog/');
 define('DB_HOST', 'localhost');
 define('DB_USER', 'Sena');
 define('DB_PASS', 'ADMIN0002');

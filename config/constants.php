@@ -1,5 +1,5 @@
 <?php
-
+session_start(); //Because session is used
 define('ROOT_URL', 'http://localhost/blog/');
 
 define('DB_HOST', 'localhost');

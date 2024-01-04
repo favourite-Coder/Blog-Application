@@ -21,6 +21,8 @@ include 'partials/header.php';
                 <li><a href="index.php" class="active"><i class="uil uil-create-dashboard"></i>
                         <h5>Manage Post</h5>
                     </a></li>
+                    <?php if(isset($_SESSION['user_is_admin'])) : ?>
+
 
                 <li><a href="add_user.php"><i class="uil uil-user-plus"></i>
                         <h5>Add User</h5>
@@ -37,6 +39,7 @@ include 'partials/header.php';
                 <li><a href="manage_categories.php"><i class="uil uil-list-ul"></i>
                         <h5>Manage Categories</h5>
                     </a></li>
+                    <?php endif ?>
             </ul>
         </aside>
 
