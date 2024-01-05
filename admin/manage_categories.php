@@ -52,8 +52,31 @@ $categories = mysqli_query($connection, $query);
             </p>
         </div>
 
+            <!---DELETE-CATEGORY THE SUCCESS MESSAGE--->
+    <?php elseif (isset($_SESSION['delete-category-success'])) : //shows if DELETE category was successful ?>
+        <div class="alert_message success container">
+            <p>
+                <?= $_SESSION['delete-category-success'];
+                //DELETE AFER EXECUTING
+                unset($_SESSION['delete-category-success']);
+                ?>
+            </p>
+        </div>
+
+            <!---DELETE-CATEGORY THE ERROR MESSAGE--->
+    <?php elseif (isset($_SESSION['delete-category'])) : //shows if add category was not successful ?>
+        <div class="alert_message error container">
+            <p>
+                <?= $_SESSION['delete-category'];
+                //DELETE AFER EXECUTING
+                unset($_SESSION['delete-category']);
+                ?>
+            </p>
+        </div>
+
         <?php endif ?>
 
+        
     <div class="container dashboard_container">
         <button id="show_sidebar-btn" class="sidebar_toogle">
             <i class="uil uil-angle-right-b"></i></button>
