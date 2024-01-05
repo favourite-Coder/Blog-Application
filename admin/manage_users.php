@@ -91,6 +91,7 @@ $users = mysqli_query($connection, $query);
                 <li><a href="index.php"><i class="uil uil-create-dashboard"></i>
                         <h5>Manage Post</h5>
                     </a></li>
+        
                 <?php if (isset($_SESSION['user_is_admin'])) : ?>
 
 
@@ -116,6 +117,8 @@ $users = mysqli_query($connection, $query);
 
         <main>
             <h2>Manage Users</h2>
+            <!--IF NO USER FOUND-->
+            <?php if(mysqli_num_rows($users) > 0) : ?>
             <table>
                 <thead>
                     <tr>
@@ -141,6 +144,10 @@ $users = mysqli_query($connection, $query);
 
                 </tbody>
             </table>
+            <!--DISPLAY IF NO USER FOUND-->
+            <?php else : ?>
+                <div class="alert_message error"><?= "No users found" ?></div>
+                <?php endif ?>
         </main>
     </div>
 </section>
