@@ -10,13 +10,57 @@ $categories = mysqli_query($connection, $query);
 
 <!----------Manage Categories------->
 <section class="dashboard">
-    <div class="container dashboard_container">
 
+                <!---ADD-CATEGORY- THE SUCCESS MESSAGE--->
+        <?php if (isset($_SESSION['add-category-success'])) : //shows if add category was successful ?>
+        <div class="alert_message success container">
+            <p>
+                <?= $_SESSION['add-category-success'];
+                //DELETE AFER EXECUTING
+                unset($_SESSION['add-category-success']);
+                ?>
+            </p>
+        </div>
+          <!---ADD-CATEGORY THE ERROR MESSAGE--->
+          <?php elseif (isset($_SESSION['add-category'])) : //shows if add category was not successful ?>
+        <div class="alert_message error container">
+            <p>
+                <?= $_SESSION['add-category'];
+                //DELETE AFER EXECUTING
+                unset($_SESSION['add-category']);
+                ?>
+            </p>
+        </div>
+             <!---EDIT-CATEGORY THE SUCCESS MESSAGE--->
+        <?php elseif (isset($_SESSION['edit-category-success'])) : //shows if edit category was successful ?>
+        <div class="alert_message success container">
+            <p>
+                <?= $_SESSION['edit-category-success'];
+                //DELETE AFER EXECUTING
+                unset($_SESSION['edit-category-success']);
+                ?>
+            </p>
+        </div>
+    <!---EDIT-CATEGORY THE ERROR MESSAGE--->
+    <?php elseif (isset($_SESSION['edit-category'])) : //shows if add category was not successful ?>
+        <div class="alert_message error container">
+            <p>
+                <?= $_SESSION['edit-category'];
+                //DELETE AFER EXECUTING
+                unset($_SESSION['edit-category']);
+                ?>
+            </p>
+        </div>
+
+        <?php endif ?>
+
+    <div class="container dashboard_container">
         <button id="show_sidebar-btn" class="sidebar_toogle">
             <i class="uil uil-angle-right-b"></i></button>
         <button id="hide_sidebar-btn" class="sidebar_toogle">
             <i class="uil uil-angle-left-b"></i></button>
-        <aside>
+        
+          <aside>
             <ul>
                 <li><a href="add_post.php"><i class="uil uil-pen"></i>
                         <h5>Add Post</h5>
