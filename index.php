@@ -95,7 +95,7 @@ $posts = mysqli_query($connection, $query);
 
 
 
-<section class="posts">
+<section class="posts <?= $featured ? '' : 'section_extra-margin' ?>">
     <div class="container posts_container">
         <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
             <article class="post">
