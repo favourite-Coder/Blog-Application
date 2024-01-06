@@ -1,6 +1,6 @@
 <?php
  // Session already started in constants.php
- session_start();
+
 require 'config/constants.php';
 
 //Retain and save data from form data if any registration error occurs
