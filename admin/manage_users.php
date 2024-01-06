@@ -50,8 +50,6 @@ $users = mysqli_query($connection, $query);
             </p>
         </div>
 
-        
-
          <!--//DELETE USER ERROR MESSAGE-->
     <?php elseif (isset($_SESSION['delete-user'])) : //shows if delete user was NOT successful 
     ?>
@@ -138,7 +136,7 @@ $users = mysqli_query($connection, $query);
                             <td><?= $user['username'] ?></td> <!--GET USERNAME-->
                             <td><a href="<?= ROOT_URL ?>admin/edit_user.php?id=<?= $user['id'] ?>" class="btn sm">Edit</a></td> <!--GET ID/EDIT USER-->
                             <td><a href="<?= ROOT_URL ?>admin/delete_user.php?id=<?= $user['id'] ?>" class="btn sm danger">Delete</a></td> <!--DELETE USER-->
-                            <td><?= $user['is_admin'] ? 'Yes' : 'No' ?></td> <!--AUTHOR & ADMIN-->
+                            <td><?= $user['is_admin'] ? 'Yes' : 'No' ?></td> <!--CHECK IF AUTHOR & ADMIN-->
                         </tr>
                     <?php endwhile ?>
 

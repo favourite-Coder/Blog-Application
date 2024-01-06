@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
     //REDIRECT BACK WITH FORM DATA TO ADD_POST PADE IF ERROR OCCUR
 
     if(isset($_SESSION['add-post'])) {
-        $_SESSION['add-pst-data'] = $_POST;
+        $_SESSION['add-post-data'] = $_POST;
         header('location: ' . ROOT_URL . 'admin/add_post.php');
         die();
     } else {
