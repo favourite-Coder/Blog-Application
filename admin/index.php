@@ -16,13 +16,34 @@ $posts = mysqli_query($connection, $query);
 
 <!----------Manage Users------->
 <section class="dashboard">
-        <!--//EDIT POST SUCCESS MESSAGE-->
- <?php if (isset($_SESSION['add-post-success'])) : //shows if edit post  was successful ?>
+        <!--//ADD POST SUCCESS MESSAGE-->
+ <?php if (isset($_SESSION['add-post-success'])) : //shows if add post  was successful ?>
         <div class="alert_message success container">
             <p>
                 <?= $_SESSION['add-post-success'];
                 //DELETE AFER EXECUTING
                 unset($_SESSION['add-post-success']);
+                ?>
+            </p>
+        </div>
+                <!--//EDIT POST SUCCESS MESSAGE-->
+ <?php elseif (isset($_SESSION['edit-post-success'])) : //shows if edit post  was successful ?>
+        <div class="alert_message success container">
+            <p>
+                <?= $_SESSION['edit-post-success'];
+                //DELETE AFER EXECUTING
+                unset($_SESSION['edit-post-success']);
+                ?>
+            </p>
+        </div>
+
+                        <!--//EDIT POST ERROR MESSAGE-->
+ <?php elseif (isset($_SESSION['edit-post'])) : //shows if edit post  was NOT successful ?>
+        <div class="alert_message error container">
+            <p>
+                <?= $_SESSION['edit-post'];
+                //DELETE AFER EXECUTING
+                unset($_SESSION['edit-post']);
                 ?>
             </p>
         </div>
