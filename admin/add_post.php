@@ -1,6 +1,11 @@
 <?php
 include 'partials/header.php';
 
+//FETCH CATEGORY FROM DATABASE
+
+$query = "SELECT * FROM categories";
+$categories = mysqli_query($connection, $query);
+
 ?>
 
 
@@ -11,27 +16,28 @@ include 'partials/header.php';
         <div class="alert_message error">
             <p>An error occurred</p>
         </div>
-        <form action="" enctype="multipart/form-data">
+        <form action="<?= ROOT_URL ?>admin/add_post_logic.php" enctype="multipart/form-data" method="POST">
 
-            <input type="text" placeholder="Title">
-            <textarea rows="10" placeholder="Body"></textarea>
-            <select>
-                <option value="1">Love</option>
-                <option value="1">Nature</option>
-                <option value="1">Tech</option>
-                <option value="1">survival</option>
-                <option value="1">Tech</option>
-                <option value="1">Nature</option>
+            <input type="text" name="title" placeholder="Title">
+            <select name="category">
+                <!----LOOP THROUGH AND DISPLAY CATEGORY FROM DATABASE----->
+                <?php while ($category = mysqli_fetch_assoc($categories)) : ?>
+                <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
+                <?php endwhile ?>
             </select>
+            <textarea rows="10" name="body" placeholder="Body"></textarea>
+            <!---CHECK IF A USER IS AN ADMIN TO DISPLAY IS_FEATURED--->
+            <?php if (isset($_SESSION['user_is_admin'])) : ?>
             <div class="form_control inline">
-                <input type="checkbox" id="is_featured" checked>
+                <input type="checkbox" name="is_featured" value="1" id="is_featured" checked>
                 <label for="is_featured">Featured</label>
             </div>
+            <?php endif ?>
             <div class="form_control">
                 <label for="thumbnail">Add Thumbnail</label>
-                <input type="file" id="thumbnail">
+                <input type="file" name="thumbnail" id="thumbnail">
             </div>
-            <button type="submit" class="btn">Add Post</button>
+            <button type="submit" name="submit" class="btn">Add Post</button>
 
         </form>
     </div>
